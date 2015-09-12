@@ -1,0 +1,10 @@
+﻿{
+  "AppSettings": {
+    "SiteTitle": "Scrum Template Developer API"
+  },
+  "Data": {
+    "ScrumDataContext": {
+      "ConnectionString": "Server=.\\SQLEXPRESS;Initial Catalog=ScrumDB;Integrated Security=true;MultipleActiveResultSets=True;"
+    }
+  }
+}

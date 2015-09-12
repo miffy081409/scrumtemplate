@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.Entity;
+using Microsoft.Framework.Configuration;
 
 namespace DeveloperAPI.Models
 {
     public class ScrumDataContext : DbContext
     {
-        public ScrumDataContext()
-        {
-            //set the connection string here
-        }
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); 
