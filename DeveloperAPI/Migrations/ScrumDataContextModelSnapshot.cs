@@ -43,9 +43,9 @@ namespace DeveloperAPI.Migrations
                     
                     b.Property<string>("Message");
                     
-                    b.Property<string>("TaskTaskID");
+                    b.Property<string>("TaskID");
                     
-                    b.Property<string>("UserUserID");
+                    b.Property<string>("UserID");
                     
                     b.Key("CommentID");
                 });
@@ -137,11 +137,11 @@ namespace DeveloperAPI.Migrations
                 {
                     b.Reference("DeveloperAPI.Models.Task")
                         .InverseCollection()
-                        .ForeignKey("TaskTaskID");
+                        .ForeignKey("TaskID");
                     
                     b.Reference("DeveloperAPI.Models.User")
                         .InverseCollection()
-                        .ForeignKey("UserUserID");
+                        .ForeignKey("UserID");
                 });
             
             builder.Entity("DeveloperAPI.Models.Project", b =>
