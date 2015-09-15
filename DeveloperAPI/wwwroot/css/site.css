@@ -1,0 +1,49 @@
+﻿body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.body-wrapper {
+    padding:0;
+    margin:0;
+}
+
+.default-header {
+    position:relative;
+    background-color:blueviolet;
+    height:300px;
+    padding-top:80px;
+    padding-left:10px;
+    padding-right:10px;
+    text-align:center;
+}
+
+    .default-header > p {
+        color:white;
+        margin-top:0;
+        margin-bottom:0;
+        font-size:40px;
+    }
+
+    .default-header > h6 {
+        margin-top:-20px;
+    }
+
+    .default-header > div {
+        margin-top:50px;
+    }
+
+footer {
+    height:150px;
+    text-align:center;
+}
+
+.main-content {
+    padding:20px;
+}
+
+
+/*bootstrap override*/
+.form-control, .btn {
+    border-radius:0;
+}
+
