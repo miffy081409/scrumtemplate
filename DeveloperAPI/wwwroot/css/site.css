@@ -43,7 +43,11 @@ footer {
 
 
 /*bootstrap override*/
-.form-control, .btn {
+.form-control, 
+.btn, 
+.well, 
+.list-group-item:first-child, 
+.list-group-item:last-child {
     border-radius:0;
 }
 
