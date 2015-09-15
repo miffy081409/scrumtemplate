@@ -17,12 +17,16 @@
     text-align:center;
 }
 
-    .default-header > p {
+    .default-header > p > a {
         color:white;
         margin-top:0;
         margin-bottom:0;
         font-size:40px;
     }
+
+        .default-header > p > a:hover {
+            text-decoration:none;
+        }
 
     .default-header > h6 {
         margin-top:-20px;

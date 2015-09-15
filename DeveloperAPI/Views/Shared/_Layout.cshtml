@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width" />
     <title>Developer API - @ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <div class="body-wrapper">
         <header class="col-md-12 default-header">
             @*<p>&lt; Scrum Template &gt; Developer API &lt; Scrum Template &#47&gt;</p>*@
             <p>
-                &lt; Developer API &#47&gt;
+                <a href="@Url.Action("index", "home")">&lt; Developer API &#47&gt;</a>
             </p>
             <br />
             <h6>Design and Developed by Scrum Master Kunu</h6>
             <div class="col-md-6 col-md-offset-3 col-sm-12">
-                <input class="input-lg form-control"  placeholder="Looking for API documentation? Type keyword to start searching e.g. 'Register'"/>
+                <input class="input-lg form-control" placeholder="Looking for API documentation? Type keyword to start searching e.g. 'Register'" />
             </div>
             @*<a href="https://github.com/miffy081409/scrumtemplate" style="top:0;right:0;position:absolute;">
-                <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" />
-            </a>*@
+                    <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" />
+                </a>*@
         </header>
         <div class="col-md-8 col-md-offset-2 main-content">
             @RenderBody()
@@ -37,6 +37,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/lib/angular/angular.js"></script>
 
-    @RenderSection("scripts",required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>
