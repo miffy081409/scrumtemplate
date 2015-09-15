@@ -12,6 +12,7 @@ namespace DeveloperAPI.Models
         [Key]
         public string TaskID { get; set; }
         public string UserID { get; set; }
+        public string SprintID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public TaskPriorityType Priority { get; set; } = TaskPriorityType.Medium;
@@ -26,6 +27,8 @@ namespace DeveloperAPI.Models
             }
         }
 
+        [ForeignKey("SprintID")]
+        public Sprint Sprint { get; set; }
         [ForeignKey("UserID")]
         public User Assignee { get; set; }
 

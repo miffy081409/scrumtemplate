@@ -7,9 +7,19 @@ using DeveloperAPI.Models;
 namespace DeveloperAPI.Migrations
 {
     [ContextType(typeof(ScrumDataContext))]
-    partial class ScrumDataContextModelSnapshot : ModelSnapshot
+    partial class UpdateAttachmentTable
     {
-        public override void BuildModel(ModelBuilder builder)
+        public override string Id
+        {
+            get { return "20150915055458_UpdateAttachmentTable"; }
+        }
+        
+        public override string ProductVersion
+        {
+            get { return "7.0.0-beta5-13549"; }
+        }
+        
+        public override void BuildTargetModel(ModelBuilder builder)
         {
             builder
                 .Annotation("SqlServer:DefaultSequenceName", "DefaultSequence")

@@ -7,9 +7,19 @@ using DeveloperAPI.Models;
 namespace DeveloperAPI.Migrations
 {
     [ContextType(typeof(ScrumDataContext))]
-    partial class ScrumDataContextModelSnapshot : ModelSnapshot
+    partial class UpdateSprintTable
     {
-        public override void BuildModel(ModelBuilder builder)
+        public override string Id
+        {
+            get { return "20150915055129_UpdateSprintTable"; }
+        }
+        
+        public override string ProductVersion
+        {
+            get { return "7.0.0-beta5-13549"; }
+        }
+        
+        public override void BuildTargetModel(ModelBuilder builder)
         {
             builder
                 .Annotation("SqlServer:DefaultSequenceName", "DefaultSequence")
@@ -29,9 +39,7 @@ namespace DeveloperAPI.Migrations
                     
                     b.Property<string>("Filename");
                     
-                    b.Property<string>("TaskID");
-                    
-                    b.Property<string>("UserID");
+                    b.Property<string>("TaskTaskID");
                     
                     b.Key("AttachmentID");
                 });
@@ -132,11 +140,7 @@ namespace DeveloperAPI.Migrations
                 {
                     b.Reference("DeveloperAPI.Models.Task")
                         .InverseCollection()
-                        .ForeignKey("TaskID");
-                    
-                    b.Reference("DeveloperAPI.Models.User")
-                        .InverseCollection()
-                        .ForeignKey("UserID");
+                        .ForeignKey("TaskTaskID");
                 });
             
             builder.Entity("DeveloperAPI.Models.Comment", b =>
