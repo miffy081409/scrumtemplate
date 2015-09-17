@@ -42,7 +42,7 @@ namespace DeveloperAPI
         public void Configure(IApplicationBuilder app)
         {
             app.UseMvc(routes => {
-                //routes.MapRoute("DocPage", "documentation/api", new { controller = "home", action = "index" });//pass routing to angular
+                routes.MapRoute("APIDocumentationPage", "api-documentation", new { controller = "home", action = "index"});//redirect to home index to let angular handle this routing
                 routes.MapRoute("Default", "{controller=home}/{action=index}/{id?}");
             });
         }

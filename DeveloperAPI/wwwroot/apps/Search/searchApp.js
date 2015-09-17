@@ -28,9 +28,13 @@ window.searchApp = angular.module('searchApp', [
 ])
 .config(function ($routeProvider, $locationProvider) {
     //configure angular routing here
-    $routeProvider.when('/', { templateUrl: '/apps/Search/View/default.html', controller: 'defaultViewModel' });
-    $routeProvider.when('/documentation/api', { templateUrl: '/apps/Search/View/apiPageDocumentation.html', controller: 'apiPageDocumentationViewModel' });
-    $routeProvider.otherwise({ redirectTo:'/'});
-    //$locationProvider.html5Mode(true);
+    $routeProvider.when('/', { templateUrl: '/apps/Search/View/default.html', controller: 'defaultViewModel' })
+        .when('/api-documentation', { templateUrl: '/apps/Search/View/apiPageDocumentation.html', controller: 'apiPageDocumentationViewModel' })
+        .otherwise({ redirectTo: '/' });
+    //$locationProvider.hashPrefix('!').html5Mode(true);
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
 });
 

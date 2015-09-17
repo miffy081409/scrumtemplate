@@ -4,8 +4,8 @@
   },
   "Data": {
     "ScrumDataContext": {
-      "ConnectionString": "Server=.\\SQLEXPRESS;Initial Catalog=ScrumDB;Integrated Security=true;MultipleActiveResultSets=True;"
-      //"ConnectionString": "Server=(localdb)\\mssqllocaldb;Initial Catalog=ScrumDB;Integrated Security=true;MultipleActiveResultSets=True;"//test only
+      //"ConnectionString": "Server=.\\SQLEXPRESS;Initial Catalog=ScrumDB;Integrated Security=true;MultipleActiveResultSets=True;"
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Initial Catalog=ScrumDB;Integrated Security=true;MultipleActiveResultSets=True;"//test only
     }
   }
 }

@@ -1,3 +1,6 @@
 {
-  "directory": "wwwroot/lib"
+  "directory": "wwwroot/lib",
+  "proxy": "http://tmgicomm:8080",
+  "https-proxy": "http://tmgicomm:8080",
+  "strict-ssl": false
 }
