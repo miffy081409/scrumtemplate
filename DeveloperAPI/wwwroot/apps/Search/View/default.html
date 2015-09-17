@@ -1,0 +1,14 @@
+﻿<h2>{{ pageHeading }}</h2>
+
+<ul class="list-group">
+    <li class="list-group-item" data-ng-repeat="api in topAPIs">
+        <div>
+            <h4>
+                <a href="/documentation/api?id={{ api.ID }}">{{ api.Title }}</a>
+            </h4>
+            <p>
+                {{ api.Description }}
+            </p>
+        </div>
+    </li>
+</ul>
