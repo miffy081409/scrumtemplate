@@ -44,6 +44,7 @@ namespace DeveloperAPI
             app.UseMvc(routes => {
                 routes.MapRoute("APIDocumentationPage", "api-documentation", new { controller = "home", action = "index"});//redirect to home index to let angular handle this routing
                 routes.MapRoute("SearchResults", "search", new { controller = "home", action = "index" });//redirect to home index to let angular handle this routing
+                routes.MapRoute("RegisterDeveloperAPI", "api/{*catchall}", new { controller = "developerapi", action = "register" });
                 routes.MapRoute("Default", "{controller=home}/{action=index}/{id?}");
             });
         }

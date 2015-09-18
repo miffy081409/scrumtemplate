@@ -38,7 +38,7 @@ searchAppModule.controller('searchViewModel', function ($rootScope, $scope, $htt
             }, result);
 
             if (result.length > 0) {
-                $scope.searchTitle = 'Search for api keyword "' + $scope.searchKeyword + '"';
+                $scope.searchTitle = 'Results for api keyword "' + $scope.searchKeyword + '"';
             }
             else {
                 $scope.searchTitle = 'No result found for api keyword "' + $scope.searchKeyword + '"';

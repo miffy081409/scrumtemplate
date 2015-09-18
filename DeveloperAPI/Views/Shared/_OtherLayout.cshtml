@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Developer API - @ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site2.css" />
+</head>
+<body>
+    <div class="body-wrapper">
+        <header class="col-md-12 default-header">
+            <!--<p>&lt; Scrum Template &gt; Developer API &lt; Scrum Template &#47&gt;</p>-->
+            <div class="logo col-md-3 col-sm-12 col-xs-12">
+                <a href="/">&lt; Developer API &#47&gt;</a>
+                <h6>Design and Developed by Scrum Master Kunu</h6>
+            </div>
+        </header>
+        <div class="col-md-8 col-md-offset-2 main-content">
+            @RenderBody()
+        </div>
+        <span class="clearfix"></span>
+        <hr />
+        <footer>
+            <p>&copy; 2015 - Developer API | Scrum Template</p>
+            <div class="col-md-12">
+                <a href="@Url.Action("register","api")">Register Your API</a> | <a href="@Url.Action("update","api")">Update Your API</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/angular/angular.js"></script>
+    <script src="~/lib/angular/angular-route.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

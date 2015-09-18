@@ -5,6 +5,12 @@
     ViewBag.Title = "Register API";
 }
 
-<span>
-    form goes here
-</span>
+@section scripts{
+    <script src="~/apps/API/apiApp.js"></script>
+    <script src="~/apps/API/ViewModel/registrationViewModel.js"></script>
+
+}
+
+<div class="row" data-ng-app="apiApp">
+    <div data-ng-view></div>
+</div>
