@@ -1,8 +1,9 @@
 ﻿var searchAppModule = window.searchApp;
 
 searchAppModule.controller("defaultViewModel", function ($scope, $http) {
+    
     $scope.pageHeading = "Top 10 Most Used API";
-
+    
     $scope.topAPIs = new Array();
 
     for (var ctr = 1; ctr <= 10; ctr++)
