@@ -1,14 +1,29 @@
 ﻿var searchAppModule = window.searchApp;
 
-searchAppModule.controller("searchViewModel", function ($scope, $http, $location, apiModel) {
+searchAppModule.controller("searchViewModel", function ($rootScope, $scope, $http, $location, apiModel) {
     
     var origList = apiModel.getData();//get data from service
     
-    $scope.searchKeyword = '';
+    $scope.searchKeyword = $location.search().q || '';//try to get keyword from query string
     $scope.searchTitle = '';
     $scope.results = new Array();
 
-    $scope.keywordChanged = function ()
+    if ($scope.searchKeyword != '') {
+        keywordTextChanged();
+    }
+
+    $scope.keywordChanged = keywordTextChanged;
+
+    $rootScope.$on('resetKeywordPlease', function () {
+        $scope.searchKeyword = '';
+    });
+
+    
+    //$scope.$watch("searchKeyword", function (newValue, oldValue) {
+
+    //});
+
+    function keywordTextChanged()
     {
         if ($scope.searchKeyword.length > 0) {
 
@@ -41,7 +56,4 @@ searchAppModule.controller("searchViewModel", function ($scope, $http, $location
         $location.url('/search?q=' + $scope.searchKeyword);
     }
 
-    //$scope.$watch("searchKeyword", function (newValue, oldValue) {
-        
-    //});
 });
