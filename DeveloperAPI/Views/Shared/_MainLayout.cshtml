@@ -31,7 +31,8 @@
         <footer>
             <p>&copy; 2015 - Developer API | Scrum Template</p>
             <div class="col-md-12">
-                <a href="@Url.Action("register","api")">Register Your API</a> | <a href="@Url.Action("update","api")">Update Your API</a>
+                @*note target property help us bypass angular routing and sends back to mvc routing*@
+                <a href="~/api/register" target="_self">Register Your API</a> | <a href="~/api/update" target="_self">Update Your API</a>
             </div>
         </footer>
     </div>

@@ -13,7 +13,6 @@
         .when('/api-documentation', { templateUrl: '/apps/Search/View/apiPageDocumentation.html', controller: 'apiPageDocumentationViewModel' })
         .when('/search', { templateUrl: '/apps/Search/View/searchResults.html' })
         .otherwise({ redirectTo: '/' });
-    //$locationProvider.hashPrefix('!').html5Mode(true);
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false
