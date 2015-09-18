@@ -14,8 +14,9 @@ namespace DeveloperAPI.Models
         public bool IsScrumMaster { get; set; }
         public string Token { get; set; }
 
-        public List<Project> Projects { get; set; }
+        public List<Project> Projects { get; set; } = new List<Project>();
         public List<Task> Tasks { get; set; } = new List<Task>();
         public List<Comment> Comments { get; set; } = new List<Comment>();
+        public List<UserSession> Sessions { get; set; } = new List<UserSession>();
     }
 }
