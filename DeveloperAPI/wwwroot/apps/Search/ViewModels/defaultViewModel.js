@@ -3,10 +3,18 @@
 searchAppModule.controller("defaultViewModel", function ($rootScope, $scope, $http, apiModel) {
     
     //reset search keyword once go back to home page
-    $rootScope.$broadcast('resetKeywordPlease', {});
-
     $scope.topAPIs = new Array();
-    $scope.pageHeading = "Top 10 Most Used API";
+    $scope.pageHeading = '';
     
-    $scope.topAPIs = apiModel.getData();//this is from services
+    initVM();
+
+    function initVM() {
+        $rootScope.$broadcast('resetKeywordPlease', {});
+        loadTop10();
+    }
+
+    function loadTop10() {
+        $scope.pageHeading = "Top 10 Most Used API";
+        $scope.topAPIs = apiModel.getData();//this is from services
+    }
 });

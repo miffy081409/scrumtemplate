@@ -1,27 +1,28 @@
 ﻿var searchAppModule = window.searchApp;
 
-searchAppModule.controller("searchViewModel", function ($rootScope, $scope, $http, $location, apiModel) {
+searchAppModule.controller('searchViewModel', function ($rootScope, $scope, $http, $location, apiModel) {
     
-    var origList = apiModel.getData();//get data from service
+    var origList = new Array();
     
-    $scope.searchKeyword = $location.search().q || '';//try to get keyword from query string
+    $scope.searchKeyword = '';
     $scope.searchTitle = '';
     $scope.results = new Array();
-
-    if ($scope.searchKeyword != '') {
-        keywordTextChanged();
-    }
-
     $scope.keywordChanged = keywordTextChanged;
 
+    initVM();
+
+    //angular broadcasting(custom event resetKeywordPlease)
     $rootScope.$on('resetKeywordPlease', function () {
         $scope.searchKeyword = '';
     });
 
-    
-    //$scope.$watch("searchKeyword", function (newValue, oldValue) {
-
-    //});
+    function initVM() {
+        origList = apiModel.getData();//get data from service
+        $scope.searchKeyword = $location.search().q || '';//try to get keyword from query string
+        if ($scope.searchKeyword != '') {
+            keywordTextChanged();
+        }
+    }
 
     function keywordTextChanged()
     {
