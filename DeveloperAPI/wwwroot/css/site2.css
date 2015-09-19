@@ -38,13 +38,27 @@
     }
 
 footer {
-    height: 150px;
+    height: 40px;
     text-align: center;
 }
 
 .main-content {
     padding: 20px;
 }
+
+/*API Registration Page*/
+
+@media(max-width:700px) {
+    #api-registration > .buttons {
+        text-align:center;
+    }
+}
+
+#api-registration > .buttons > button {
+    min-width:100px;
+}
+
+/*API Registration Page*/
 
 
 /*bootstrap override*/

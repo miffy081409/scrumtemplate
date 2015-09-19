@@ -9,7 +9,8 @@ using DeveloperAPI.Models;
 
 namespace DeveloperAPI.Controllers.API
 {
-    [Route("api/[controller]")]
+    //yo jick lets use scrum-template as our prefix in out api..so that it wont confuse the routing in the developerapi registration
+    [Route("scrum-template/api/[controller]")]
     public class UserController : Controller
     {
         private readonly ScrumDataContext db;
@@ -17,6 +18,12 @@ namespace DeveloperAPI.Controllers.API
         public UserController(ScrumDataContext dbContext)
         {
             this.db = dbContext;
+        }
+
+        [HttpGet]
+        public string Get()
+        {
+            return "Hello";
         }
 
         //returns token

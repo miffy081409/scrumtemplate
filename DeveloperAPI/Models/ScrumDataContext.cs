@@ -22,5 +22,8 @@ namespace DeveloperAPI.Models
 
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Comment> Comments { get; set; }//less prio for now
+
+
+        public DbSet<APIDocumentation> APIDocumentations { get; set; }
     }
 }

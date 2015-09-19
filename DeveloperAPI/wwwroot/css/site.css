@@ -1,5 +1,7 @@
 ﻿body {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#1e1e1e;
+
 }
 
 .body-wrapper {
@@ -41,6 +43,15 @@ footer {
     height:150px;
     text-align:center;
 }
+
+    footer > div > a {
+        text-decoration:none;
+        color:#1e1e1e;
+    }
+
+        footer > div > a:hover {
+            text-decoration:none;
+        }
 
 .main-content {
     padding:20px;
