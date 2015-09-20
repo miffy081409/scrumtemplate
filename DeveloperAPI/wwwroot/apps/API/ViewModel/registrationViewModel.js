@@ -23,7 +23,7 @@ apiApp.controller('registrationViewModel', function ($rootScope, $scope, $http, 
     //Properties
     $scope.pageHeading = '';
     $scope.alert = { type: 'danger', msg: '' };
-    $scope.apiDocumentationModel = { Name: '', Url:'', Description: '', SampleImplementation:''};
+    $scope.apiDocumentationModel = { Name: '', Url: '', Description: '', SampleImplementation: '' };
 
     //methods
     $scope.processData = processData;
@@ -46,7 +46,29 @@ apiApp.controller('registrationViewModel', function ($rootScope, $scope, $http, 
         {
             return;
         }
-        alert('Post data here');
+        
+        //show wait screen here
+
+        $http({
+            url: '/scrum-template/api/documentation',
+            method: "POST",
+            data: $scope.apiDocumentationModel,
+            //headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            headers: { 'Content-Type': 'application/json' }
+        }).success(function (data, status, headers, config) {
+            if (data.Validation != undefined && data.Validation.toLowerCase() == 'success') {
+                $scope.alert = { type: 'success', msg: 'Successfully saved.' };
+            }
+            else {
+                $scope.alert = { type: 'danger', msg: 'Validation failed: ' + data.Message };
+            }
+
+            //stop wait screen here
+
+        }).error(function (data, status, headers, config) {
+            $scope.alert = { type: 'danger', msg: 'An error occur while saving your api.' };
+            //stop wait screen here
+        });
     }
 
     function validateModel() {

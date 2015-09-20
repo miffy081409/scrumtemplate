@@ -18,8 +18,9 @@ namespace DeveloperAPI.Migrations
             
             builder.Entity("DeveloperAPI.Models.APIDocumentation", b =>
                 {
-                    b.Property<string>("ID")
-                        .GenerateValueOnAdd();
+                    b.Property<int>("ID")
+                        .GenerateValueOnAdd()
+                        .StoreGeneratedPattern(StoreGeneratedPattern.Identity);
                     
                     b.Property<DateTime>("AddedOn");
                     

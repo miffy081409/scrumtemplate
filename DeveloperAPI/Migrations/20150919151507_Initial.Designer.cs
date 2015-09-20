@@ -7,11 +7,11 @@ using DeveloperAPI.Models;
 namespace DeveloperAPI.Migrations
 {
     [ContextType(typeof(ScrumDataContext))]
-    partial class AddUserSessionTable
+    partial class Initial
     {
         public override string Id
         {
-            get { return "20150918121307_AddUserSessionTable"; }
+            get { return "20150919151507_Initial"; }
         }
         
         public override string ProductVersion
@@ -25,6 +25,27 @@ namespace DeveloperAPI.Migrations
                 .Annotation("SqlServer:DefaultSequenceName", "DefaultSequence")
                 .Annotation("SqlServer:Sequence:.DefaultSequence", "'DefaultSequence', '', '1', '10', '', '', 'Int64', 'False'")
                 .Annotation("SqlServer:ValueGeneration", "Sequence");
+            
+            builder.Entity("DeveloperAPI.Models.APIDocumentation", b =>
+                {
+                    b.Property<int>("ID")
+                        .GenerateValueOnAdd()
+                        .StoreGeneratedPattern(StoreGeneratedPattern.Identity);
+                    
+                    b.Property<DateTime>("AddedOn");
+                    
+                    b.Property<string>("Description");
+                    
+                    b.Property<string>("Name");
+                    
+                    b.Property<string>("SampleImplementation");
+                    
+                    b.Property<string>("Url");
+                    
+                    b.Property<string>("UserID");
+                    
+                    b.Key("ID");
+                });
             
             builder.Entity("DeveloperAPI.Models.Attachment", b =>
                 {
@@ -153,6 +174,13 @@ namespace DeveloperAPI.Migrations
                     b.Property<string>("UserID");
                     
                     b.Key("Id");
+                });
+            
+            builder.Entity("DeveloperAPI.Models.APIDocumentation", b =>
+                {
+                    b.Reference("DeveloperAPI.Models.User")
+                        .InverseCollection()
+                        .ForeignKey("UserID");
                 });
             
             builder.Entity("DeveloperAPI.Models.Attachment", b =>

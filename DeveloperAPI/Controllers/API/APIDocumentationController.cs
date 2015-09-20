@@ -4,70 +4,106 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using DeveloperAPI.Models;
+using Microsoft.Data.Entity;
+
 using static System.Threading.Tasks.Task;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DeveloperAPI.Controllers.API
 {
-    [Route("scrum-template/api/documentation")]
+    [Route("scrum-template/api/documentation/")]
     public class APIDocumentationController : Controller
     {
-        private readonly ScrumDataContext db;
+        private ScrumDataContext db;
 
         public APIDocumentationController(ScrumDataContext dbContext)
         {
-            this.db = dbContext;
+            db = dbContext;
         }
 
-        // GET: api/values
-        [HttpGet]
-        public async Task<IEnumerable<APIDocumentation>> Get()
-        {
-            return await Run<IEnumerable<APIDocumentation>>(()=> {
-                //var list = new List<APIDocumentation>();
-                //list.Add(new APIDocumentation() { ID = "1", Name = "Test API From Service 1", Description = "Lorem goes here" });
-                //list.Add(new APIDocumentation() { ID = "2", Name = "Test API From Service 2", Description = "Lorem goes here" });
-                //return list;
-                return this.db.APIDocumentations.ToList();
-            });
-        }
-
-        //convert this to async
-        [HttpGet("{id}")]
-        public async Task<APIDocumentation> Get(int id)
-        {
-            return await Run<APIDocumentation>(() => {
-                return this.db.APIDocumentations.ToList().FirstOrDefault(x => x.ID == id.ToString());
-            });
-        }
 
         //custom query
         [HttpGet("{q}/{value}")]
-        public string Get(string q, string value)
+        public async Task<IEnumerable<APIDocumentation>> Get(string q, string value)
         {
-            switch (q.ToLower())
+            var list = new List<APIDocumentation>();
+
+            await Run(() =>
             {
-                case "top":
-                    var top = int.Parse(value);
-                    return $"show top {top} here.";
+                switch (q.ToLower())
+                {
+                    case "top":
+                        var top = int.Parse(value);
+                        list = db.APIDocumentations.Take(top).ToList();
+                        break;
 
-                case "latest":
-                    var latest = int.Parse(value);
-                    return $"show latest {latest} here.";
-            }
+                    case "latest":
+                        var latest = int.Parse(value);
+                        list = (from x in db.APIDocumentations orderby x.AddedOn descending select x).Take(latest).ToList();
+                        break;
 
-            return "value";
-        }
+                    case "single":
+                        var id = int.Parse(value);
+                        var entity = db.APIDocumentations.FirstOrDefault(x => x.ID == id);
 
-        // POST api/values
-        [HttpPost]
-        public async System.Threading.Tasks.Task Post([FromBody]APIDocumentation value)
-        {
-            //validate model here
+                        if (entity != null)
+                        {
+                            list.Add(entity);
+                        }
+                        break;
+
+                    case "search":
+                        list = (from x in db.APIDocumentations where x.Name.ToLower().Contains(value.ToLower()) || x.Description.ToLower().Contains(value.ToLower()) select x).ToList();
+                        break;
+                }
+            });
             
-            //this.db.Add(value);
-            //await this.db.SaveChangesAsync();
+            return list;
+        }
+        
+        [HttpPost]
+        public async System.Threading.Tasks.Task<object> Post([FromBody]APIDocumentation value)
+        {
+            try
+            {
+                //validate model here
+                if (string.IsNullOrWhiteSpace(value.Name))
+                {
+                    return new { Message = "Provide your API name.", Validation = "Failed" };
+                }
+
+                if (string.IsNullOrWhiteSpace(value.Url))
+                {
+                    return new { Message = "Provide your API url.", Validation = "Failed" };
+                }
+
+                if (string.IsNullOrWhiteSpace(value.Description))
+                {
+                    return new { Message = "A description is needed to describe how your API behave.", Validation = "Failed" };
+                }
+
+                if (string.IsNullOrWhiteSpace(value.SampleImplementation))
+                {
+                    return new { Message = "A sample implementation is need to guide your consumer.", Validation = "Failed" };
+                }
+
+                var entity = new APIDocumentation();
+                entity.Name = value.Name;
+                entity.Url = value.Url;
+                entity.Description = value.Description;
+                entity.SampleImplementation = value.SampleImplementation;
+                entity.UserID = value.UserID;
+
+                db.APIDocumentations.Add(entity);
+                await db.SaveChangesAsync();
+
+                return new { Message = "", Validation = "Success" };
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         // PUT api/values/5

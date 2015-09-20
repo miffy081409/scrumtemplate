@@ -21,7 +21,7 @@ namespace DeveloperAPI.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         { 
-            ViewData["Test"] = db.Attachments.Count();
+            ViewData["Test"] = db.Attachments.ToList();
             return View();
         }
     }

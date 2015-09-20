@@ -1,12 +1,9 @@
 ﻿var searchAppModule = window.searchApp;
 
-searchAppModule.controller('searchViewModel', function ($rootScope, $scope, $location, apiModel) {
-    
-    var origList = new Array();
-    
+searchAppModule.controller('searchViewModel', function ($rootScope, $scope, $location, apiModel) { 
     $scope.searchKeyword = '';
     $scope.searchTitle = '';
-    $scope.results = new Array();
+    $scope.results = null;
     $scope.keywordChanged = keywordTextChanged;
 
     initVM();
@@ -17,14 +14,6 @@ searchAppModule.controller('searchViewModel', function ($rootScope, $scope, $loc
     });
 
     function initVM() {
-        //start loading gif here
-
-        //first param is a flag whether to hardcoded test data or not
-        apiModel.getData(false, function (data) {
-            origList = data;
-            //stop loading gif here
-        });//this is from services
-
         $scope.searchKeyword = $location.search().q || '';//try to get keyword from query string
         if ($scope.searchKeyword != '') {
             keywordTextChanged();
@@ -34,23 +23,28 @@ searchAppModule.controller('searchViewModel', function ($rootScope, $scope, $loc
     function keywordTextChanged()
     {
         if ($scope.searchKeyword.length > 0) {
+            //start wait screen here
+            apiModel.searchApi($scope.searchKeyword, function (data) {
 
-            var result = new Array();
-            var resultCount = 0;
-            angular.forEach(origList, function (key, value) {
-                if (key.Name.toLowerCase().indexOf($scope.searchKeyword.toLowerCase()) >= 0) {
-                    result[resultCount] = key;
-                    resultCount++;
+                if (data.length > 0) {
+                    $scope.searchTitle = 'Results for keyword "' + $scope.searchKeyword + '"';
                 }
-            }, result);
+                else {
+                    $scope.searchTitle = 'No result found for keyword "' + $scope.searchKeyword + '"';
+                }
+                $scope.results = data;
+                //stop wait screen here
 
-            if (result.length > 0) {
-                $scope.searchTitle = 'Results for keyword "' + $scope.searchKeyword + '"';
-            }
-            else {
-                $scope.searchTitle = 'No result found for keyword "' + $scope.searchKeyword + '"';
-            }
-            $scope.results = result;
+
+                //var result = new Array();
+                //var resultCount = 0;
+                //angular.forEach(origList, function (key, value) {
+                //    if (key.Name.toLowerCase().indexOf($scope.searchKeyword.toLowerCase()) >= 0) {
+                //        result[resultCount] = key;
+                //        resultCount++;
+                //    }
+                //}, result);
+            });
         }
         else {
             //$scope.searchTitle = 'API List';
