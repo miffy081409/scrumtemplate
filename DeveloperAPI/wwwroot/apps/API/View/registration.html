@@ -1,30 +1,34 @@
-﻿<h2>{{ pageHeading }}</h2>
+﻿<div class="col-md-8 col-md-offset-2 col-sm-12">
+    <div class="well">
+        <h2>{{ pageHeading }}</h2>
 
-<div class="alert alert-{{ alert.type }} col-md-12" ng-model="alert" ng-show="alert.msg" role="alert">
-    {{ alert.msg }}
-</div>
+        <div class="alert alert-{{ alert.type }} col-md-12" ng-model="alert" ng-show="alert.msg" role="alert">
+            {{ alert.msg }}
+        </div>
 
-<form>
-    <div id="api-registration" class="col-md-12">
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" name="Name" ng-change="resetError()" ng-model="apiDocumentationModel.Name" placeholder="API Name"/>
-        </div>
-        <div class="form-group">
-            <label>URL</label>
-            <input type="text" class="form-control" name="Url" ng-change="resetError()" ng-model="apiDocumentationModel.Url" placeholder="API URL" />
-        </div>
-        <div class="form-group">
-            <label>Description</label>
-            <textarea name="Description" rows="5" class="form-control" ng-change="resetError()" ng-model="apiDocumentationModel.Description" placeholder="Describe your API"></textarea>
-        </div>
-        <div class="form-group">
-            <label>Sample Implementation</label>
-            <textarea name="SampleImplementation" rows="5" class="form-control" ng-change="resetError()" ng-model="apiDocumentationModel.SampleImplementation" placeholder="Show samples on how to consume your API"></textarea>
-        </div>
-        <div class="form-group buttons">
-            <button class="btn btn-default" ng-click="processData()">Save</button>
-            <button class="btn btn-default" type="reset">Reset</button>
-        </div>
+        <form>
+            <div id="api-registration" class="col-md-12">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="Name" ng-change="resetError()" ng-model="apiDocumentationModel.Name" placeholder="API Name" />
+                </div>
+                <div class="form-group">
+                    <label>URL</label>
+                    <input type="text" class="form-control" name="Url" ng-change="resetError()" ng-model="apiDocumentationModel.Url" placeholder="API URL" />
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="Description" rows="5" class="form-control" ng-change="resetError()" ng-model="apiDocumentationModel.Description" placeholder="Describe your API"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Sample Implementation</label>
+                    <textarea name="SampleImplementation" rows="5" class="form-control" ng-change="resetError()" ng-model="apiDocumentationModel.SampleImplementation" placeholder="Show samples on how to consume your API"></textarea>
+                </div>
+                <div class="form-group buttons">
+                    <button class="btn btn-default" ng-click="processData()">Save</button>
+                    <button class="btn btn-default" type="reset">Reset</button>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>

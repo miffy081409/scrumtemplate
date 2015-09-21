@@ -60,6 +60,36 @@ footer {
 
 /*API Registration Page*/
 
+/*Login Page*/
+
+#login-form {
+        position:fixed; 
+        top:18px;
+        right:20px;
+        padding:0;
+    }
+
+    #login-form > form > .form-group {
+        margin-left:0;
+        margin-right:0;
+    }
+
+@media(max-width:768px) {
+    #login-form {
+        position:relative; 
+        margin-top:-5px;
+        margin-bottom:10px;
+        top:0;
+        right:0;
+    }
+
+        #login-form > form {
+            float:none !important;    
+            display:block;
+        }
+}
+
+/*Login Page*/
 
 /*bootstrap override*/
 .form-control,
