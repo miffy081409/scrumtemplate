@@ -20,10 +20,117 @@ namespace DeveloperAPI.Controllers.API
             this.db = dbContext;
         }
 
+
+        // GET: api/values
         [HttpGet]
-        public string Get()
+        public IEnumerable<User> Get()
         {
-            return "Hello";
+            try
+            {
+
+                var users = this.db.Users.ToList();
+                //hide sensitive details
+                foreach (var item in users)
+                {
+                    item.Password = "";
+                }
+
+                return users;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public User Get(string id)
+        {
+            try
+            {
+                User user = null;
+                user = this.db.Users.FirstOrDefault(u => u.UserID == id);
+                //hide sensitive details
+                user.Password = "";
+                return user;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        // POST api/values
+        [HttpPost]
+        public void Post([FromBody]User user)
+        {
+            try
+            {
+                //validate data
+
+                this.db.Users.Add(user);
+                this.db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        // PUT api/values/5 EDIT
+        [HttpPut("{id}")]
+        public void Put(string id, [FromBody]User user)
+        {
+            try
+            {
+                User userFromDB = null;
+                //validate data
+
+                userFromDB = this.db.Users.FirstOrDefault(u => u.UserID == id);
+
+                if (userFromDB == null)
+                    return;
+                //map details
+                userFromDB.Username = user.Username;
+                //userFromDB.Username = user.Password; //e enable ba pag update sa password?
+                userFromDB.IsScrumMaster = user.IsScrumMaster;
+                userFromDB.AddedOn = user.AddedOn;
+                this.db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public void Delete(string id)
+        {
+            try
+            {
+                User userFromDB = null;
+                //validate data
+
+                userFromDB = this.db.Users.FirstOrDefault(u => u.UserID == id);
+
+                if (userFromDB == null)
+                    return;
+                //map details
+                this.db.Users.Remove(userFromDB);
+                this.db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         //returns token
@@ -59,6 +166,8 @@ namespace DeveloperAPI.Controllers.API
                 throw;
             }
         }
+
+
 
     }
 }
